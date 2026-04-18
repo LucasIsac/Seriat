@@ -13,7 +13,7 @@ def main():
         except AttributeError:
             # Handle cases where reconfigure is not available
             pass
-    cli = CLI()
+    cli = CLI("es")
     cli.select_language()
     cli.welcome()
     

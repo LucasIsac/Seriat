@@ -26,7 +26,7 @@ class CLI:
         console.print(f"\n1. {self._t('lang_en')}")
         console.print(f"2. {self._t('lang_es')}")
         
-        choice = IntPrompt.ask(self._t("select_language"), choices=["1", "2"], default=1)
+        choice = IntPrompt.ask(self._t("select_language"), choices=["1", "2"], default=2)
         self.i18n.language = "en" if choice == 1 else "es"
 
     def clear(self):

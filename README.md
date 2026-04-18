@@ -1,137 +1,137 @@
-# Seriat: Queuing System Simulator
+# Seriat: Simulador de Sistemas de Colas
 
-Seriat is a Python-based discrete-event simulation (DES) tool designed to model and analyze various queuing system configurations. This application was developed as a comprehensive solution for the Practical Work No. 1 (TP1) of the Systems Modelling and Simulation module.
+Seriat es una herramienta de simulación de eventos discretos (DES) basada en Python, diseñada para modelar y analizar diversas configuraciones de sistemas de colas. Esta aplicación fue desarrollada como solución integral para el Trabajo Práctico No. 1 (TP1) de la asignatura Modelización y Simulación de Sistemas.
 
-## Overview
+## Descripción General
 
-The application utilizes a priority-queue-based simulation engine to process events chronologically. It provides a structured CLI interface to configure and execute three distinct simulation scenarios.
+La aplicación utiliza un motor de simulación basado en cola de prioridad para procesar eventos cronológicamente. Proporciona una interfaz CLI estructurada para configurar y ejecutar tres escenarios de simulación distintos.
 
-## Key Features
+## Características Principales
 
-- **Modular Architecture**: Separation of the core simulation engine, problem-specific logic, and user interface.
-- **Interactive CLI**: Step-by-step configuration using the Rich library for formatted output and tables.
-- **Predefined Presets**: Includes data sequences from TP1 tables to facilitate verification of manual simulations.
-- **Flexible Generators**: Support for constant values and list-based sequences for time intervals.
-- **State Tracking**: Detailed recording of system state changes (clock, queue size, server status) for every processed event.
-- **Internationalization**: Support for English and Spanish languages.
-- **Export Results**: Results can be exported to Markdown tables.
+- **Arquitectura Modular**: Separación del motor de simulación, lógica específica de problemas e interfaz de usuario.
+- **Interfaz CLI Interactiva**: Configuración paso a paso usando la biblioteca Rich para salida formateada y tablas.
+- **Predefinidos Incluidos**: Incluye secuencias de datos de las tablas del TP1 para facilitar la verificación de simulaciones manuales.
+- **Generadores Flexibles**: Soporte para valores constantes y secuencias basadas en listas para intervalos de tiempo.
+- **Seguimiento de Estado**: Grabación detallada de cambios de estado del sistema (reloj, tamaño de cola, estado del servidor) para cada evento procesado.
+- **Internacionalización**: Soporte para inglés y español.
+- **Exportar Resultados**: Los resultados pueden exportarse a tablas Markdown.
 
-## Implemented Scenarios
+## Escenarios Implementados
 
-### 1. Standard Single Server (FCFS)
-Models a basic system where clients arrive at intervals and are served one-by-one in order of arrival.
+### 1. Servidor Único Estándar (FCFS)
+Modela un sistema básico donde los clientes llegan a intervalos y son atendidos uno a uno en orden de llegada.
 
-### 2. Server with Work/Rest Intervals
-Simulates a system where the server alternates between active work periods and rest intervals. Includes logic for suspending and resuming services when the server departs.
+### 2. Servidor con Intervalos de Trabajo/Descanso
+Simula un sistema donde el servidor alterna entre períodos activos de trabajo y descansos. Incluye lógica para suspender y reanudar servicios cuando el servidor se ausenta.
 
-### 3. Reneging (Abandonment)
-Introduces customer patience thresholds. Clients will leave the queue if their waiting time exceeds a specific limit before being served.
+### 3. Renegación (Abandono)
+Introduce umbrales de paciencia del cliente. Los clientes abandonarán la cola si su tiempo de espera excede un límite específico antes de ser atendidos.
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 seriat/
-├── main.py                 # Application entry point
-├── requirements.txt       # Dependencies
-├── .gitignore          # Git ignore rules
+├── main.py                 # Punto de entrada de la aplicación
+├── requirements.txt       # Dependencias
+├── .gitignore          # Reglas de Git ignore
 ├── sim/
 │   ├── __init__.py
-│   ├── engine.py        # Core DES engine using heapq
+│   ├── engine.py        # Motor DES core usando heapq
 │   └── problems/
 │       ├── __init__.py
-│       ├── base.py     # Base Problem class
-│       ├── problem1.py # Exercise 1: FCFS
-│       ├── problem2.py # Exercise 2: Work/Rest
-│       └── problem3.py # Exercise 3: Reneging
+│       ├── base.py     # Clase base Problem
+│       ├── problem1.py # Ejercicio 1: FCFS
+│       ├── problem2.py # Ejercicio 2: Trabajo/Descanso
+│       └── problem3.py # Ejercicio 3: Renegación
 ├── ui/
 │   ├── __init__.py
-│   └── cli.py      # Rich-based CLI
+│   └── cli.py      # CLI basada en Rich
 └── utils/
     ├── __init__.py
-    ├── generators.py  # Time interval generators
-    ├── exporter.py  # Results exporter
-    └── i18n.py    # Internationalization
+    ├── generators.py  # Generadores de intervalos
+    ├── exporter.py  # Exportador de resultados
+    └── i18n.py    # Internacionalización
 ```
 
-## Requirements
+## Requisitos
 
-- Python 3.8 or higher
-- Rich library (`pip install rich`)
+- Python 3.8 o superior
+- Biblioteca Rich (`pip install rich`)
 
-## Installation
+## Instalación
 
-1. Clone the repository:
+1. Clonar el repositorio:
 ```bash
 git clone https://github.com/LucasIsac/Seriat.git
 cd Seriat
 ```
 
-2. Install dependencies:
+2. Instalar dependencias:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## Uso
 
-Run the simulator:
+Ejecutar el simulador:
 ```bash
 python main.py
 ```
 
-Follow the on-screen prompts to:
-1. **Select language** (English/Spanish)
-2. **Choose problem** (1, 2, or 3)
-3. **Configure time generators**:
-   - Constant value (e.g., 45 seconds)
-   - List of values (e.g., 65, 6, 2, 21, 42, 33, 21)
-   - Preset from TP1 tables
-4. **Define number of events** to simulate
-5. **View results** in table format
-6. Optionally **view event flow diagram** in browser
+Seguir las instrucciones en pantalla para:
+1. **Seleccionar idioma** (Español/Inglés)
+2. **Elegir problema** (1, 2 o 3)
+3. **Configurar generadores de tiempo**:
+   - Valor constante (ej., 45 segundos)
+   - Lista de valores (ej., 65, 6, 2, 21, 42, 33, 21)
+   - Predefinido de las tablas del TP1
+4. **Definir número de eventos** a simular
+5. **Ver resultados** en formato de tabla
+6. Opcionalmente **ver diagrama de flujo de eventos** en el navegador
 
-## How It Works
+## Cómo Funciona
 
-The simulation uses the **Next-Event Time Advance** algorithm:
+La simulación usa el algoritmo de **Avance al Próximo Evento**:
 
-1. Initialize clock at 0
-2. Schedule initial events (first arrival, etc.)
-3. Process events in chronological order using a priority queue (heapq)
-4. For each event, update system state and schedule future events
-5. Record state after each event
+1. Inicializar reloj en 0
+2. Programar eventos iniciales (primera llegada, etc.)
+3. Procesar eventos en orden cronológico usando una cola de prioridad (heapq)
+4. Para cada evento, actualizar estado del sistema y programar eventos futuros
+5. Grabar estado después de cada evento
 
-### Event Types
+### Tipos de Eventos
 
-| Event | Description |
-|-------|------------|
-| `ARRIVAL` | New client arrives |
-| `END_SERVICE` | Server finishes serving a client |
-| `SERVER_DEPARTURE` | Server leaves for rest (Problem 2) |
-| `SERVER_ARRIVAL` | Server returns from rest (Problem 2) |
-| `RENEGING` | Client abandons queue (Problem 3) |
+| Evento | Descripción |
+|--------|------------|
+| `ARRIVAL` | Nuevo cliente llega |
+| `END_SERVICE` | Servidor termina de atender un cliente |
+| `SERVER_DEPARTURE` | Servidor se ausenta a descansar (Problema 2) |
+| `SERVER_ARRIVAL` | Servidor regresa del descanso (Problema 2) |
+| `RENEGING` | Cliente abandona la cola (Problema 3) |
 
-### System State Variables
+### Variables de Estado del Sistema
 
-| Variable | Description |
+| Variable | Descripción |
 |----------|------------|
-| `clock` | Current simulation time |
-| `server_busy` | 0 = idle, 1 = busy |
-| `server_present` | 0 = resting, 1 = at station |
-| `queue` | Number of clients waiting |
-| `abandoned_count` | Total abandoned clients (Problem 3) |
+| `clock` | Tiempo actual de simulación |
+| `server_busy` | 0 = libre, 1 = ocupado |
+| `server_present` | 0 = descansando, 1 = en estación |
+| `queue` | Número de clientes esperando |
+| `abandoned_count` | Total de clientes abandonados (Problema 3) |
 
-## Graphical Legend
+## Leyenda Gráfica
 
-In the simulation results tables, the **Graphical** column shows:
+En las tablas de resultados, la columna **Gráfica** muestra:
 
-| Symbol | Meaning |
-|--------|---------|
-| `◠` | Server present but idle |
-| `▣` | Server busy |
-| `□` | Server idle (available) |
-| `●` | Client in queue |
+| Símbolo | Significado |
+|---------|------------|
+| `◠` | Servidor presente pero idle |
+| `▣` | Servidor ocupado |
+| `□` | Servidor idle (disponible) |
+| `●` | Cliente en cola |
 
-**Example:** `◠[▣] ● ●` = Server present, busy, 2 clients waiting
+**Ejemplo:** `◠[▣] ● ●` = Servidor presente, ocupado, 2 clientes esperando
 
-## License
+## Licencia
 
 MIT License
